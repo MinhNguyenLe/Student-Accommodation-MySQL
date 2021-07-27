@@ -1,30 +1,21 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const mysql = require("mysql");
-
-const db = mysql.createConnection({
-  host: "localhost",
-  port: 3307,
-  user: "root",
-  password: "",
-  database: "nodejs-login",
-});
-
-db.connect((err) => {
-  if (err) console.log(err);
-  else console.log("MySQL connected");
-});
+//connect route
+const route = require("./route");
+route(app);
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.send("hihi");
+  res.json({ dm: "hihihi" });
 });
 
 app.listen(process.env.PORT, () =>
