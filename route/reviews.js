@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const userController = require("../controller/userController");
+const reviewController = require("../controller/reviewController");
 
-router.get("/login/:email", userController.login);
+router.get("/login", reviewController.login);
 // router.post("/logout", userController.logout);
 // router.post("/register", userController.register);
 
