@@ -9,11 +9,11 @@ db.connect((err) => {
 const userController = {
   login: (req, res) => {
     db.query(
-      query.check_email,
+      query.CHECK_EMAIL,
       [req.params.email],
       (error, results, fields) => {
         if (error) console.log(error);
-        if (!results.length)
+        if (!results)
           return res.status(400).json({ msg: "Incorrect password" });
         return res.status(200).json({ msg: "success login", data: results });
       }
